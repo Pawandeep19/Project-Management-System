@@ -1,13 +1,30 @@
 package com.projectmanagement;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class ProjectManagementApplication {
+import com.projectmanagement.model.dao.User;
+import com.projectmanagement.model.service.UserService;
 
+@SpringBootApplication
+public class ProjectManagementApplication implements CommandLineRunner {
+	
+	@Autowired
+	private UserService userService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectManagementApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		  //userService.AddUser(new User("joe", "pqr"));
+		  //userService.AddUser(new User("pawan", "pawan"));
+
+
+		
 	}
 
 }

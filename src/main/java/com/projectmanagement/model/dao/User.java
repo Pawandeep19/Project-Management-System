@@ -16,20 +16,26 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Entity
-@Table(name="project_table")
+@Table(name = "user_table")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String UserName;
-	
-	@ManyToMany(mappedBy="users")
-	private List<Project> projects=new ArrayList<>();
+	private Integer userId;
+	private String username;
+	private String password;
 
 	public User() {
+
+	}
+
+	public User(String string, List<?> list) {
 		super();
 	}
 
-	
-	
+	public User(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
 }

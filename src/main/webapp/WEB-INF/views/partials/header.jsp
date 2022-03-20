@@ -21,7 +21,7 @@
     
     
  <meta charset="ISO-8859-1">
-<title>Navbar</title>
+<title>Project Management System</title>
 </head>
 <body>
 

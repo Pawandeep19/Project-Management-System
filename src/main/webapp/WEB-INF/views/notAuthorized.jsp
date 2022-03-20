@@ -14,7 +14,7 @@
 </head>
 <body>
 <div>
-    <h1>CANNOT EDIT PROJECTS THAT ARE ALREADY COMPLETED</h1>
+    <h1>CANNOT DO THAT ACTION</h1>
     <image src="https://cdn.dribbble.com/users/1192256/screenshots/6290585/1._friday.gif"></image>
 </div>
 </body>

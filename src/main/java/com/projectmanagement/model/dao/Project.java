@@ -25,13 +25,14 @@ public class Project {
 	private String projectStatus;
 	private String clientName;
 	private String createdBy;
+	private String resourcesAllocated;
 
 	public Project() {
 		super();
 	}
 
 	public Project(String projectName, Date startDate, Date endDate, String projectStatus, String clientName,
-			String createdBy) {
+			String createdBy, String resourcesAllocated) {
 		super();
 		this.projectName = projectName;
 		this.startDate = startDate;
@@ -39,6 +40,7 @@ public class Project {
 		this.projectStatus = projectStatus;
 		this.clientName = clientName;
 		this.createdBy = createdBy;
+		this.resourcesAllocated=resourcesAllocated;
 	}
 
 }

@@ -2,8 +2,10 @@ package com.projectmanagement.web.controller;
 
 import java.security.Principal;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,8 +14,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.projectmanagement.model.dao.Project;
 import com.projectmanagement.model.dao.User;
 import com.projectmanagement.model.dto.ChangePasswordDto;
 import com.projectmanagement.model.service.ProjectService;
@@ -33,6 +37,13 @@ public class HomeController {
 	@GetMapping("/home")
 	public String home(ModelMap map) {
 		map.addAttribute("project", projectService.getAllProject());
+		return "home";
+	}
+	
+	@PostMapping("/home")
+	public String serach(Model model, @Param("keyword") String keyword) {
+		List<Project> listProjects=projectService.findAll(keyword);
+		model.addAttribute("project", listProjects);
 		return "home";
 	}
 

@@ -14,6 +14,10 @@
 	<title>Create New Project</title>
 </head>
 <body>
+
+
+
+
 <div class="rest">
 	<div id="container">
 	
@@ -36,14 +40,32 @@
 		 </select>
 		 </br>
 		Enter client name:<form:input path="clientName" />
-		
+		Enter resources allocated:<form:input path="resourcesAllocated" />
 		<form:hidden path="createdBy" value="${loggedinuser}"/>
 		
-		<input type="submit" value="SUBMIT" />
+		<input type="submit" value="SAVE" />
+		<input type="reset" value="RESET">
 		
 	</form:form>
     </div>
 </div>
+<script>
 
+var isSubmitting = false
+
+$(document).ready(function () {
+    $('form').submit(function(){
+        isSubmitting = true
+    })
+
+    $('form').data('initial-state', $('form').serialize());
+
+    $(window).on('beforeunload', function() {
+        if (!isSubmitting && $('form').serialize() != $('form').data('initial-state')){
+            return 'You have unsaved changes which will not be saved.'
+        }
+    });
+})
+</script>
 </body>
 </html>

@@ -24,6 +24,8 @@ import com.projectmanagement.model.service.ProjectService;
 public class ProjectCrudController {
 
 	private ProjectService projectService;
+	
+
 
 	@Autowired
 	public ProjectCrudController(ProjectService projectService) {
@@ -49,8 +51,7 @@ public class ProjectCrudController {
 		Project project = projectService.getProjectById(id);
 		ProjectDto projectDto = new ProjectDto();
 		projectDto.setId(id);
-		System.out.println(project.getProjectStatus());
-		if (project.getProjectStatus().contains("Completed")) {
+		if (project.getProjectStatus().equals("Completed")) {
 			mv.setViewName("notAuthorized");
 			return mv;
 		}
@@ -60,6 +61,7 @@ public class ProjectCrudController {
 		projectDto.setEndDate(project.getEndDate());
 		projectDto.setProjectStatus(project.getProjectStatus());
 		projectDto.setCreatedBy(project.getCreatedBy());
+		projectDto.setResourcesAllocated(project.getResourcesAllocated());
 		mv.addObject("projectDto", projectDto);
 
 		// mv.addAttribute("updateaccountDto",accountService.getAccountById(id));
@@ -74,9 +76,23 @@ public class ProjectCrudController {
 
 	@GetMapping(path = "deleteProject/{id}")
 	public String deleteProjectGet(@PathVariable int id) {
+
+		Project project = projectService.getProjectById(id);
+		System.out.println(project.getProjectStatus());
+//		if (project.getProjectStatus().contentEquals("Not Started")) {
+//			projectService.deleteProject(id);
+//			return "redirect:../home";
+//		}
+//		else {
+//			return "notAuthorized";
+//		}
+		
 		projectService.deleteProject(id);
-		return "redirect:../home";
+     	return "redirect:../home";
+
 	}
+	
+	
 
 	@GetMapping(path = "success")
 	public String transferGet() {

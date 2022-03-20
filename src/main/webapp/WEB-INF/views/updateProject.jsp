@@ -11,9 +11,11 @@
 	<style> <%@include file="public/stylesheets/createProject.css"%> </style>
 	
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Update Project</title>
 </head>
 <body>
+
+
 <div class="rest">
 	<div id="container">
 	
@@ -35,22 +37,36 @@
 		 </select>
 		 </br>
 	Enter client name:<form:input path="clientName" />
+	Enter resources allocated:<form:input path="resourcesAllocated" />
 	
 	<form:hidden path="createdBy" value="${loggedinuser}"/><br/>
 	
-	 <input type="submit" value="SAVE" />
+	 <input type="submit" value="SAVE"/>
+	 <input type="reset" value="RESET"/>
+	
 	
 	</form:form>
 </div>		
 </div>
 
 <script>
-	$('#form').data('serialize',$('#form').serialize()); // On load save form current state
-	
-	$(window).bind('beforeunload', function(e){
-	    if($('#form').serialize()!=$('#form').data('serialize'))return true;
-	    else e=null; // i.e; if form state change show warning box, else don't show it.
-	});
+
+
+var isSubmitting = false
+
+$(document).ready(function () {
+    $('form').submit(function(){
+        isSubmitting = true
+    })
+
+    $('form').data('initial-state', $('form').serialize());
+
+    $(window).on('beforeunload', function() {
+        if (!isSubmitting && $('form').serialize() != $('form').data('initial-state')){
+            return 'You have unsaved changes which will not be saved.'
+        }
+    });
+})
 </script>	
 </body>
 </html>

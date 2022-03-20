@@ -59,9 +59,18 @@ public class ProjectServiceImpl implements ProjectService {
 		project.setEndDate(projectDto.getEndDate());
 		project.setProjectStatus(projectDto.getProjectStatus());
 		project.setCreatedBy(projectDto.getCreatedBy());
+		project.setResourcesAllocated(projectDto.getResourcesAllocated());
 		projectDao.save(project);
 		return project;
 
+	}
+
+	
+	public List<Project> findAll(String keyword) {
+		if(keyword!=null) {
+			return projectDao.findAll(keyword);
+		}
+		return projectDao.findAll();
 	}
 
 }

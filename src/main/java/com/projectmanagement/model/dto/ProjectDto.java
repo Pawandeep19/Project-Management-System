@@ -17,4 +17,5 @@ public class ProjectDto {
 	private Date endDate;
 	private String projectStatus;
 	private String createdBy;
+	private String resourcesAllocated;
 }

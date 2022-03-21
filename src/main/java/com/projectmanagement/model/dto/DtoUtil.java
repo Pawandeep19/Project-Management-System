@@ -12,6 +12,7 @@ public class DtoUtil {
 		project.setEndDate(projectDto.getEndDate());
 		project.setProjectStatus(projectDto.getProjectStatus());
 		project.setCreatedBy(projectDto.getCreatedBy());
+		project.setResourcesAllocated(projectDto.getResourcesAllocated());
 		return project;
 	}
 

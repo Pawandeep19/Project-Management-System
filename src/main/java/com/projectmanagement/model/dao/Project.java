@@ -40,7 +40,7 @@ public class Project {
 		this.projectStatus = projectStatus;
 		this.clientName = clientName;
 		this.createdBy = createdBy;
-		this.resourcesAllocated=resourcesAllocated;
+		this.resourcesAllocated = resourcesAllocated;
 	}
 
 }

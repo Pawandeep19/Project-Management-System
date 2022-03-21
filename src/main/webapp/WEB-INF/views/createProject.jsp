@@ -8,7 +8,7 @@
 	 <!-- header jsp -->
 	<jsp:include page="partials/header.jsp"></jsp:include>
 	<!-- our css -->
-	<style> <%@include file="public/stylesheets/createProject.css"%> </style>
+	<style> <%@include file="public/stylesheets/forms.css"%> </style>
 
 	<meta charset="ISO-8859-1">
 	<title>Create New Project</title>
@@ -22,25 +22,26 @@
 	<div id="container">
 	
 	<h1>CREATE NEW PROJECT</h1>
-	
+	 
+	 <!-- Create new project form  -->
 	<form:form id="form" class="topBefore" action="addproject" method="post"
 		modelAttribute="project">
 	
-		Enter project name:<form:input path="projectName" />
+		Enter project name:<form:input required="required" path="projectName" />
 		
-		Enter start date:<form:input type="date" path="startDate" />
+		Enter start date:<form:input required="required" id="startdate" type="date" path="startDate" />
 		
-		Enter end date :<form:input type="date" path="endDate" />
+		Enter end date :<form:input required="required" id="enddate" type="date" path="endDate" />
 		
 		<label for="status">Project Status:</label>
-		<select name="projectStatus" id="status">
+		<select name="projectStatus" required="required" id="status">
 		  <option value="Not Started">Not Started</option>
 		  <option value="In Progress">In Progress</option>
 		  <option value="Completed">Completed</option>
 		 </select>
 		 </br>
-		Enter client name:<form:input path="clientName" />
-		Enter resources allocated:<form:input path="resourcesAllocated" />
+		Enter client name:<form:input required="required" path="clientName" />
+		Enter resources allocated:<form:input required="required" path="resourcesAllocated" />
 		<form:hidden path="createdBy" value="${loggedinuser}"/>
 		
 		<input type="submit" value="SAVE" />
@@ -49,23 +50,42 @@
 	</form:form>
     </div>
 </div>
+
+
+
 <script>
+
 
 var isSubmitting = false
 
 $(document).ready(function () {
-    $('form').submit(function(){
-        isSubmitting = true
+    $('form').submit(function(ev){
+    	
+    	/* Start date should be less than End date validation */
+
+		if(Date.parse($('#startdate').val()) < Date.parse($('#enddate').val())){ 
+			isSubmitting = true;
+		 }
+		else{
+			alert('startdate should be lesser than enddate');
+			ev.preventDefault();
+		} 
     })
+    
 
     $('form').data('initial-state', $('form').serialize());
 
     $(window).on('beforeunload', function() {
-        if (!isSubmitting && $('form').serialize() != $('form').data('initial-state')){
+    	
+    	/* Leaving the page without saving - Warning */
+    	
+		if (!isSubmitting && $('form').serialize() != $('form').data('initial-state')){
             return 'You have unsaved changes which will not be saved.'
         }
+		
     });
 })
 </script>
+
 </body>
 </html>

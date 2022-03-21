@@ -1,8 +1,6 @@
 package com.projectmanagement.model.service;
 
-import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.projectmanagement.model.dao.Project;
 import com.projectmanagement.model.dao.ProjectDao;
-import com.projectmanagement.model.dto.ProjectDetailDto;
 import com.projectmanagement.model.dto.ProjectDto;
 import com.projectmanagement.model.exception.ProjectNotFoundException;
 
@@ -25,11 +22,15 @@ public class ProjectServiceImpl implements ProjectService {
 		this.projectDao = projectDao;
 	}
 
+	// To get List of all projects
+
 	@Override
 	public List<Project> getAllProject() {
 		return projectDao.findAll();
 	}
 
+	// To get a particular project by Id
+	
 	@Override
 	public Project getProjectById(Integer projectId) {
 
@@ -37,11 +38,15 @@ public class ProjectServiceImpl implements ProjectService {
 				.orElseThrow(() -> new ProjectNotFoundException("No Project with this ID"));
 	}
 
+	// Add Project
+
 	@Override
 	public Project addProject(Project project) {
 		projectDao.save(project);
 		return project;
 	}
+
+	// Delete Project
 
 	@Override
 	public Project deleteProject(Integer projectId) {
@@ -50,6 +55,8 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectToDelete;
 	}
 
+	// Update Project
+	
 	@Override
 	public Project updateProjectDetails(Integer projectId, ProjectDto projectDto) {
 		Project project = getProjectById(projectId);
@@ -65,9 +72,10 @@ public class ProjectServiceImpl implements ProjectService {
 
 	}
 
-	
+	// Search Project
+
 	public List<Project> findAll(String keyword) {
-		if(keyword!=null) {
+		if (keyword != null) {
 			return projectDao.findAll(keyword);
 		}
 		return projectDao.findAll();

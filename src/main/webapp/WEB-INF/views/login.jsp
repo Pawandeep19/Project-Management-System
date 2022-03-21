@@ -15,6 +15,7 @@
    <script>
       <%@include file="public/javascripts/login.js"%>
    </script>
+   
    <!-- bootstrap css -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<!-- our css -->
@@ -25,12 +26,15 @@
 </head>
 <body>
  
+   <!-- Bad Credentials -->
    
    <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION }">
       <div class="container" id="badcred">           
          <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message }"></c:out>
       </div>
    </c:if>
+   
+ 
 
 
 <div class="container">

@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 
+	// Login
+
 	@GetMapping(path = "login")
 	public String appLogin() {
 		return "login";
@@ -22,13 +24,11 @@ public class LoginController {
 		return mv;
 	}
 
+	// Logout
+
 	@GetMapping("/logout")
 	public String logout() {
 		return "login";
 	}
 
-//	@GetMapping(path = "success")
-//	public String transferGet() {
-//		return "success_user_registered";
-//	}
 }

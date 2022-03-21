@@ -26,7 +26,7 @@ public class MyUserDetailService implements UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException("user is not found");
 		}
-		// how to conver our user to the user that is undertandaable by spring sec
+		// how to convert our user to the user that is understandable spring security
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
 				AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
 	}

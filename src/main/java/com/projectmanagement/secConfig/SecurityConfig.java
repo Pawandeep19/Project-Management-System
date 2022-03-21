@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.and().formLogin()
 		.loginPage("/login").loginProcessingUrl("/projectlogin")
 		.usernameParameter("uname").passwordParameter("upass")
-		.defaultSuccessUrl("/home")
+		.defaultSuccessUrl("/home?success=Sign-In Successful")
 		.permitAll()
 		.and()
 		.exceptionHandling().accessDeniedPage("/accessdenied")

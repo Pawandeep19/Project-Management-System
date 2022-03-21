@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjectDao extends JpaRepository<Project, Integer> {
+
+	// used for search functionality
 	@Query("SELECT p from Project p WHERE p.projectName LIKE %?1%")
-    public List<Project> findAll (String keyword);
+	public List<Project> findAll(String keyword);
 }

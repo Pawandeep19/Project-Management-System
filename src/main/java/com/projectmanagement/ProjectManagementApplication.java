@@ -10,21 +10,20 @@ import com.projectmanagement.model.service.UserService;
 
 @SpringBootApplication
 public class ProjectManagementApplication implements CommandLineRunner {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectManagementApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		  //userService.AddUser(new User("joe", "pqr"));
-		  //userService.AddUser(new User("pawan", "pawan"));
+		// adding user into database
 
-
-		
+		// userService.AddUser(new User("joe", "pqr"));
+		// userService.AddUser(new User("pawan", "pawan"));
 	}
 
 }

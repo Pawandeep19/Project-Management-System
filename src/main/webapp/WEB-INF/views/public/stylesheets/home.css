@@ -1,0 +1,207 @@
+@charset "ISO-8859-1";
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	letter-spacing: 2px;
+	background-image:
+		url("https://besthqwallpapers.com/Uploads/27-2-2021/157767/thumb2-turquoise-abstract-wave-4k-turquoise-wave-on-a-white-background-turquoise-waves-background-turquoise-abstraction.jpg");
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+#sp {
+	margin: 0 100px;;
+}
+
+.card {
+	border: none;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	margin-bottom: 50px;
+	flex-direction: row;
+	border: 5px solid black;
+}
+
+.col-md-6 {
+	flex-direction: row;
+	display: inline;
+}
+
+.edit {
+	background-color: rgb(0, 162, 255);
+	color: white;
+	margin-left: 20px;
+	width: 17%;
+}
+
+.del {
+	background-color: red;
+	color: white;
+	margin-left: 80px;
+	width: 17%;
+}
+
+h4 {
+	background-color: #442c2e;
+	color: white;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 0;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+h1 {
+	text-align: center;
+	background-color: #442c2e;
+	color: white;
+	/* font-weight: bolder; */
+	margin-bottom: 50px;
+	margin-right: 70px;
+}
+
+/* model box */
+* {
+	box-sizing: border-box;
+}
+
+#id01 a {
+	background-color: red;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	opacity: 0.9;
+	text-decoration: none;
+}
+
+.modal h1 {
+	margin-left: 50px;
+	text-transform: uppercase;
+}
+/* Set a style for all buttons */
+button {
+	background-color: #04AA6D;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	opacity: 0.9;
+}
+
+button:hover {
+	opacity: 1;
+}
+
+button.btn.btn-primary {
+	display: inline;
+	width: 100px;
+}
+
+input.form-control {
+	width: 60%;
+	margin-left: 100px;
+}
+
+.form-control {
+	display: inline;
+	margin-bottom: 50px;
+}
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn {
+	float: left;
+	width: 50%;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+	background-color: #ccc;
+	color: black;
+}
+
+/* Add a color to the delete button */
+.deletebtn {
+	background-color: #f44336;
+}
+
+/* Add padding and center-align text to the container */
+.container {
+	padding: 16px;
+	text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: #474e5d;
+	padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 5% auto 15% auto;
+	/* 5% from the top, 15% from the bottom and centered */
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+	border: 1px solid #f1f1f1;
+	margin-bottom: 25px;
+}
+
+/* The Modal Close Button (x) */
+.close {
+	position: absolute;
+	right: 35px;
+	top: 15px;
+	font-size: 40px;
+	font-weight: bold;
+	color: #f1f1f1;
+}
+
+.close:hover, .close:focus {
+	color: #f44336;
+	cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 300px) {
+	.cancelbtn, .deletebtn {
+		width: 100%;
+	}
+}
+
+.dropdown {
+	width: 60%;
+}
+
+button.message {
+	display: contents;
+	text-align: center;
+}
+
+.alert alert-success alert-dismissible fade show {
+	margin-right: 350px;
+}

@@ -14,7 +14,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.projectmanagement.model.dao.Project;
@@ -25,6 +24,7 @@ import com.projectmanagement.model.service.UserService;
 
 @Controller
 public class HomeController {
+
 	private ProjectService projectService;
 	@Autowired
 	private UserService userService;
@@ -34,18 +34,24 @@ public class HomeController {
 		this.projectService = projectService;
 	}
 
+	// Display all Projects
+
 	@GetMapping("/home")
 	public String home(ModelMap map) {
 		map.addAttribute("project", projectService.getAllProject());
 		return "home";
 	}
-	
+
+	// Search a project
+
 	@PostMapping("/home")
 	public String serach(Model model, @Param("keyword") String keyword) {
-		List<Project> listProjects=projectService.findAll(keyword);
+		List<Project> listProjects = projectService.findAll(keyword);
 		model.addAttribute("project", listProjects);
 		return "home";
 	}
+
+	// change password form
 
 	@GetMapping(path = "changepwd")
 	public ModelAndView changePwdGet(ModelAndView mv, Principal principal) {
@@ -57,6 +63,8 @@ public class HomeController {
 		return mv;
 	}
 
+	// change password post mapping and validation
+
 	@PostMapping(path = "changepwd")
 	public String changePwdPost(@ModelAttribute ChangePasswordDto changePasswordDto, Principal principal) {
 		User user = userService.getUserByUsername(principal.getName());
@@ -66,9 +74,11 @@ public class HomeController {
 			return "redirect:changepwd?error=Incorrect Current Password";
 		} else {
 			userService.changePassword(user, changePasswordDto.getNewPassword());
-			return "redirect:changepwd?success=Password Changed Successfully!";
+			return "redirect:logout?success=Password Changed Successfully!";
 		}
 	}
+
+	// To send logged in user from controller to view
 
 	@ModelAttribute("loggedinuser")
 	public User globalUserObject(Model model) {

@@ -10,201 +10,65 @@
 
 <!-- header jsp -->
 <jsp:include page="partials/header.jsp"></jsp:include>
+
 <!-- bootstrap js -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
+	
 <!-- bootstrap css -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+	
+<!-- Animate on scroll  -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<!-- aos css used for scroll effects (aos-animate on scroll)-->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+<!-- font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+<!-- icon pack -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
 <meta charset="ISO-8859-1">
 <title>Dashboard</title>
 
-<!-- css -->
+<!--my custom css -->
 <style>
-#sp {
-	margin: 0 100px;;
-}
-
-.card {
-	border: none;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
-		rgba(0, 0, 0, 0.19);
-	margin-bottom: 50px;
-	flex-direction: row;
-}
-
-.col-md-6 {
-	flex-direction: row;
-	display: inline;
-}
-
-.edit {
-	background-color: rgb(0, 162, 255);
-	color: white;
-	margin-left: 20px;
-}
-
-.del {
-	background-color: red;
-	color: white;
-	margin-left: 80px;
-}
-
-h4 {
-	background-color: #442c2e;
-	color: white;
-	text-align: center;
-	text-transform: uppercase;
-	padding: 0;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-h1 {
-	text-align: center;
-	background-color: #442c2e;
-	color: white;
-	font-weight: bolder;
-	margin-bottom: 50px;
-	margin-right: 70px;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-#id01 a {
-	background-color: red;
-	color: white;
-	padding: 14px 20px;
-	margin: 8px 0;
-	border: none;
-	cursor: pointer;
-	opacity: 0.9;
-	text-decoration: none;
-}
-
-/* Set a style for all buttons */
-button {
-	background-color: #04AA6D;
-	color: white;
-	padding: 14px 20px;
-	margin: 8px 0;
-	border: none;
-	cursor: pointer;
-	width: 100%;
-	opacity: 0.9;
-}
-
-button:hover {
-	opacity: 1;
-}
-
-button.btn.btn-primary {
-	display: inline;
-	width: 100px;
-}
-
-input.form-control {
-	width: 60%;
-	margin-left: 100px;
-}
-
-.form-control {
-	display: inline;
-	margin-bottom: 50px;
-}
-/* Float cancel and delete buttons and add an equal width */
-.cancelbtn, .deletebtn {
-	float: left;
-	width: 50%;
-}
-
-/* Add a color to the cancel button */
-.cancelbtn {
-	background-color: #ccc;
-	color: black;
-}
-
-/* Add a color to the delete button */
-a.deletebtn.del {
-	background-color: #f44336;
-}
-
-/* Add padding and center-align text to the container */
-.container {
-	padding: 16px;
-	text-align: center;
-}
-
-/* The Modal (background) */
-.modal {
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: #474e5d;
-	padding-top: 50px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-	background-color: #fefefe;
-	margin: 5% auto 15% auto;
-	/* 5% from the top, 15% from the bottom and centered */
-	border: 1px solid #888;
-	width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* Style the horizontal ruler */
-hr {
-	border: 1px solid #f1f1f1;
-	margin-bottom: 25px;
-}
-
-/* The Modal Close Button (x) */
-.close {
-	position: absolute;
-	right: 35px;
-	top: 15px;
-	font-size: 40px;
-	font-weight: bold;
-	color: #f1f1f1;
-}
-
-.close:hover, .close:focus {
-	color: #f44336;
-	cursor: pointer;
-}
-
-/* Clear floats */
-.clearfix::after {
-	content: "";
-	clear: both;
-	display: table;
-}
-
-/* Change styles for cancel button and delete button on extra small screens */
-@media screen and (max-width: 300px) {
-	.cancelbtn, .deletebtn {
-		width: 100%;
-	}
-}
+    <%@include file="public/stylesheets/home.css"%>
 </style>
-<!-- css over -->
 
 </head>
 <body>
 
+    <!-- Created Project , Update Project Success Messages -->
+     
+     
+	<%
+	if (request.getParameter("success") != null) {
+	%>
+
+	<div class="alert alert-success alert-dismissible fade show"
+		role="alert"
+		style="margin-top: 2rem; width: max-content; margin-inline: auto;">
+		<%=request.getParameter("success")%>
+		<button type="button" class="message" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<%
+	}
+	%>
+
+
+    <!--  Search Bar  -->
 	<div class="rest">
 		<div>
 			<form action="home" method="post">
@@ -216,6 +80,8 @@ hr {
 		</div>
 
 
+        <!-- Display All Projects  -->
+
 		<h1>PROJECTS</h1>
 
 
@@ -224,7 +90,7 @@ hr {
 				<c:forEach items="${project}" var="project">
 					<c:if test="${loggedinuser==project.createdBy}">
 						<div class="col-md-12">
-							<div class="card">
+							<div class="card" data-aos="fade-left">
 								<div class="row">
 									<div class=col-md-4>
 										<img class="img-fluid"
@@ -233,86 +99,114 @@ hr {
 
 									<div class="col-md-8">
 										<div class="row">
+										
 											<div class="caption">
 												<h4>${project.projectName}</h4>
 											</div>
+											
 											<div class="col-md-6">
-
-												<h5>Status : ${project.projectStatus}</h5>
-												<h5>Client: ${project.clientName}</h5>
-												<h5>Start Date: ${project.startDate}</h5>
-												<h5>End Date: ${project.endDate}</h5>
+												<h5>STATUS : ${project.projectStatus}</h5>
+												<h5>CLIENT: ${project.clientName}</h5>
+												<h5>START DATE: ${project.startDate}</h5>
+												<h5>END DATE: ${project.endDate}</h5>
 												<c:set var="resources" value="${project.resourcesAllocated}"
 													scope="application" />
 												<c:set var="users" value="${fn:split(resources,',')}" />
 											</div>
-											<div class="col-md-6">
-												<h5>Resources Allocated:</h5>
-												<select>
-													<c:forEach items="${users}" var="projects">
-														<option value="${projects}">${projects}</option>
-													</c:forEach>
-												</select>
+											
+											<div class="col-md-6">												
+												<div class="dropdown">
+													<button class="btn btn-secondary dropdown-toggle"
+														type="button" id="dropdownMenu2" data-toggle="dropdown"
+														aria-haspopup="true" aria-expanded="false">
+														Resources Allocated</button>
+													<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+														<c:forEach items="${users}" var="projects">
+															<button class="dropdown-item" type="button"
+																value="${projects}">${projects}</button>
+														</c:forEach>
+														<button class="dropdown-item" type="button"
+															value="${projects}">${projects}</button>
+
+													</div>
+												</div>
 											</div>
+											
 										</div>
-										<!-- Delete Modal -->
+										
+										
 										<p>
-											<a class="btn btn-sm edit"
-												href="updateProject/${project.projectId}"> Edit</a> 
-											<a
-												class="btn btn-sm del"
-												onclick="document.getElementById('id01').style.display='block'">
-												Delete</a>
+										
+										    <!-- Edit button  -->
+                                            <c:if test="${project.projectStatus=='Not Started' || project.projectStatus=='In Progress'}">												
+                                               <a class="btn btn-sm edit" href="updateProject/${project.projectId}"> <i	class="fa fa-pencil-square"></i> Edit</a>											
+                                             </c:if>											
+												
+											<c:if test="${project.projectStatus=='Completed'}">												
+											     <button disabled="disabled" class="btn btn-sm edit"> <i class="fa fa-pencil-square"></i> Edit</button>
+											</c:if>
+											
+											<!-- Delete Button  -->
+											<c:if test="${project.projectStatus=='Not Started'}">												
+											 <a class="btn btn-sm del"
+												onclick="document.getElementById('id01-${project.projectId}').style.display='block'">
+												<i class="fa fa-trash"></i> Delete
+											</a>
+											</c:if>
+											
+											<c:if test="${project.projectStatus=='Completed' || project.projectStatus=='In Progress'}">												
+											     <button disabled="disabled" class="btn btn-sm del"> <i class="fa fa-trash"></i> Delete</button>
+											</c:if>
+											
+										
 										</p>
 
-										<div id="id01" class="modal">
+
+                                        <!-- Delete Modal -->
+                                                                                
+										<div id="id01-${project.projectId}" class="modal">
 											<span
-												onclick="document.getElementById('id01').style.display='none'"
+												onclick="document.getElementById('id01-${project.projectId}').style.display='none'"
 												class="close" title="Close Modal">x</span>
-											<form class="modal-content" action="deleteProject/${project.projectId}">
+											<form class="modal-content"
+												action="deleteProject/${project.projectId}">
 												<div class="container">
-													<h1>Delete Account</h1>
-													<p>Are you sure you want to delete your account?</p>
+													<h1>Delete Project</h1>
+													<p>Are you sure you want to delete your project?</p>
 
 													<div class="clearfix">
 														<button type="button"
-															onclick="document.getElementById('id01').style.display='none'"
+															onclick="document.getElementById('id01-${project.projectId}').style.display='none'"
 															class="cancelbtn">Cancel</button>
-														<button class="deletebtn">Delete</button>
+														<button class="deletebtn">Confirm</button>
 													</div>
 												</div>
 											</form>
 										</div>
+										
+										
 
 									</div>
 								</div>
-
-
 							</div>
 						</div>
 					</c:if>
 				</c:forEach>
-
-
-
-
-
 			</div>
 		</div>
-
-
 	</div>
+	
+	
 	<script>
-		
-		// Get the modal
-		var modal = document.getElementById('id01');
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
+	
+	/* Animate on scroll */
+		AOS.init({
+			offset : 150,
+			duration : 1000
+		});
+	
 	</script>
+	
+	
 </body>
 </html>

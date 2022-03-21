@@ -24,23 +24,27 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 
+	// Add user
 	@Override
 	public void AddUser(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		userDao.save(user);
 	}
 
+	// Change Password
 	@Override
 	public void changePassword(User user, String password) {
 		user.setPassword(bCryptPasswordEncoder.encode(password));
 		userDao.save(user);
 	}
 
+	// validate password
 	@Override
 	public Boolean validatePassword(String Password, User user) {
 		return bCryptPasswordEncoder.matches(Password, user.getPassword());
 	}
 
+	// to get a user by username
 	@Override
 	public User getUserByUsername(String username) {
 		return userDao.findByUsername(username);

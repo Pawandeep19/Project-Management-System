@@ -1,6 +1,6 @@
 package com.projectmanagement.model.service;
 
-import com.projectmanagement.model.dao.User;
+import com.projectmanagement.model.entities.User;
 
 public interface UserService {
 	public void AddUser(User user);

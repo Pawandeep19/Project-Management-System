@@ -16,11 +16,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.projectmanagement.model.dao.Project;
-import com.projectmanagement.model.dao.User;
+
 import com.projectmanagement.model.dto.ChangePasswordDto;
+import com.projectmanagement.model.entities.Project;
+import com.projectmanagement.model.entities.User;
 import com.projectmanagement.model.service.ProjectService;
 import com.projectmanagement.model.service.UserService;
+
+
+//functionalities
+
 
 @Controller
 public class HomeController {
@@ -87,7 +92,7 @@ public class HomeController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		model.addAttribute("loggedinuser", authentication.getName());
 		model.addAttribute("roles", authentication.getAuthorities());
-		// Create User pojo class
+		// used to create new user object
 		User user = new User(authentication.getName(), Arrays.asList(authentication.getAuthorities()));
 		return user;
 	}

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -23,6 +24,7 @@
 
 <meta charset="ISO-8859-1">
 <title>Project Management System</title>
+<link rel="icon" type="image/png" href="https://i.ibb.co/BfY53NR/R.png" />
 </head>
 <body>
 

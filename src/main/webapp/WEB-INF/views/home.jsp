@@ -36,6 +36,13 @@
 <!-- icon pack -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
+<!-- Data table -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<!--  jsp formatter for date-->
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <meta charset="ISO-8859-1">
 <title>Dashboard</title>
 
@@ -107,60 +114,60 @@
 											<div class="col-md-6">
 												<h5>STATUS : ${project.projectStatus}</h5>
 												<h5>CLIENT: ${project.clientName}</h5>
-												<h5>START DATE: ${project.startDate}</h5>
-												<h5>END DATE: ${project.endDate}</h5>
+												<h5>START DATE: <fmt:formatDate type = "date" value = "${project.startDate}" /></h5>
+												<h5>END DATE: <fmt:formatDate type = "date" value = "${project.endDate}" /></h5>
 												<c:set var="resources" value="${project.resourcesAllocated}"
 													scope="application" />
 												<c:set var="users" value="${fn:split(resources,',')}" />
-											</div>
-											
-											<div class="col-md-6">												
-												<div class="dropdown">
-													<button class="btn btn-secondary dropdown-toggle"
-														type="button" id="dropdownMenu2" data-toggle="dropdown"
-														aria-haspopup="true" aria-expanded="false">
-														Resources Allocated</button>
-													<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-														<c:forEach items="${users}" var="projects">
-															<button class="dropdown-item" type="button"
-																value="${projects}">${projects}</button>
-														</c:forEach>
-														<button class="dropdown-item" type="button"
-															value="${projects}">${projects}</button>
 
-													</div>
-												</div>
+												<p>
+										
+												<!-- Edit button  -->
+												<c:if test="${project.projectStatus=='Not Started' || project.projectStatus=='In Progress'}">												
+												<a class="btn btn-sm edit" href="updateProject/${project.projectId}"> <i	class="fa fa-pencil-square"></i> Edit</a>											
+												</c:if>											
+													
+												<c:if test="${project.projectStatus=='Completed'}">												
+													<button disabled="disabled" class="btn btn-sm edit"> <i class="fa fa-pencil-square"></i> Edit</button>
+												</c:if>
+												
+												<!-- Delete Button  -->
+												<c:if test="${project.projectStatus=='Not Started'}">												
+												<a class="btn btn-sm del"
+													onclick="document.getElementById('id01-${project.projectId}').style.display='block'">
+													<i class="fa fa-trash"></i> Delete
+												</a>
+												</c:if>
+												
+												<c:if test="${project.projectStatus=='Completed' || project.projectStatus=='In Progress'}">												
+													<button disabled="disabled" class="btn btn-sm del"> <i class="fa fa-trash"></i> Delete</button>
+												</c:if>
+										
+									
+									            </p>
+
 											</div>
 											
+											<div class="col-md-6 tab">												
+												<table id="table_id" class="table_id table table-striped" border="1">
+												<thead class="thead-dark">
+													<tr class="table-dark">
+														<th>Resources Allocated</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="${users}" var="user">
+														<tr>
+															<td>${user}</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											    </table>
+											</div>
 										</div>
 										
 										
-										<p>
 										
-										    <!-- Edit button  -->
-                                            <c:if test="${project.projectStatus=='Not Started' || project.projectStatus=='In Progress'}">												
-                                               <a class="btn btn-sm edit" href="updateProject/${project.projectId}"> <i	class="fa fa-pencil-square"></i> Edit</a>											
-                                             </c:if>											
-												
-											<c:if test="${project.projectStatus=='Completed'}">												
-											     <button disabled="disabled" class="btn btn-sm edit"> <i class="fa fa-pencil-square"></i> Edit</button>
-											</c:if>
-											
-											<!-- Delete Button  -->
-											<c:if test="${project.projectStatus=='Not Started'}">												
-											 <a class="btn btn-sm del"
-												onclick="document.getElementById('id01-${project.projectId}').style.display='block'">
-												<i class="fa fa-trash"></i> Delete
-											</a>
-											</c:if>
-											
-											<c:if test="${project.projectStatus=='Completed' || project.projectStatus=='In Progress'}">												
-											     <button disabled="disabled" class="btn btn-sm del"> <i class="fa fa-trash"></i> Delete</button>
-											</c:if>
-											
-										
-										</p>
-
 
                                         <!-- Delete Modal -->
                                                                                 
@@ -204,6 +211,19 @@
 			offset : 150,
 			duration : 1000
 		});
+		let list = `${project[0].projectName}`;
+		console.log(list);
+		
+	/* resources allocated */
+		$('.table_id').DataTable({
+			"order": [
+			[0, "desc"]
+			],
+			"paging":false,
+			"info":false,
+			"scrollY": "10vh",
+			"scrollCollapse": true}
+			);
 	
 	</script>
 	

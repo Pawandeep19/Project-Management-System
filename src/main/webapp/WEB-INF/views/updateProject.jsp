@@ -28,18 +28,21 @@
 			
 	<form:hidden path="id"/><br/>	
 	
-	Enter project name:<form:input required="required" path="projectName"/>
+	Enter project name:<form:input required="required" maxlength="30" path="projectName"/>
 	Enter start date:<form:input required="required" type="date" path="startDate" />
 	Enter end date :<form:input required="required" type="date" path="endDate" />
 		<label for="status">Project Status:</label>
 		<select name="projectStatus" required="required" id="status">
+		<c:set var="status" value="${projectDto.projectStatus }"/>		
+		<c:if test="${(status=='Not Started')}">		
 		  <option value="Not Started">Not Started</option>
+		</c:if>
 		  <option value="In Progress">In Progress</option>
 		  <option value="Completed">Completed</option>
 		 </select>
 		 </br>
-	Enter client name:<form:input required="required" path="clientName" />
-	Enter resources allocated:<form:input required="required" path="resourcesAllocated" />
+	Enter client name:<form:input required="required" maxlength="30" path="clientName" />
+	Enter resources allocated like , Eg: Pawan, Akshat, Paras,..<form:input required="required" path="resourcesAllocated" />
 	
 	<form:hidden path="createdBy" value="${loggedinuser}"/><br/>
 	

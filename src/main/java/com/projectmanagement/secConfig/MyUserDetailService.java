@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.projectmanagement.model.dao.User;
+import com.projectmanagement.model.entities.User;
 import com.projectmanagement.model.service.UserService;
 
 @Service

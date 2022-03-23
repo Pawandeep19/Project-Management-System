@@ -1,7 +1,7 @@
 package com.projectmanagement.model.dto;
 
-import com.projectmanagement.model.dao.Project;
-import com.projectmanagement.model.dao.User;
+import com.projectmanagement.model.entities.Project;
+import com.projectmanagement.model.entities.User;
 
 public class DtoUtil {
 	public static Project convertToProject(ProjectDto projectDto) {

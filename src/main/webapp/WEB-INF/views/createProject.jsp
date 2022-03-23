@@ -27,7 +27,7 @@
 	<form:form id="form" class="topBefore" action="addproject" method="post"
 		modelAttribute="project">
 	
-		Enter project name:<form:input required="required" path="projectName" />
+		Enter project name:<form:input required="required" maxlength="30" path="projectName" />
 		
 		Enter start date:<form:input required="required" id="startdate" type="date" path="startDate" />
 		
@@ -40,8 +40,8 @@
 		  <option value="Completed">Completed</option>
 		 </select>
 		 </br>
-		Enter client name:<form:input required="required" path="clientName" />
-		Enter resources allocated:<form:input required="required" path="resourcesAllocated" />
+		Enter client name:<form:input required="required" maxlength="30" path="clientName" />
+		Enter resources allocated like , Eg: Pawan, Akshat, Paras,...<form:input required="required" path="resourcesAllocated" />
 		<form:hidden path="createdBy" value="${loggedinuser}"/>
 		
 		<input type="submit" value="SAVE" />

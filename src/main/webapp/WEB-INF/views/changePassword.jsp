@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Project Management System Change Password</title>
-<link rel="icon" type="image/png" href="https://i.ibb.co/BfY53NR/R.png" />
+
 
 <!-- bootstrap css -->
 <link rel="stylesheet"
@@ -87,11 +87,11 @@
              <!-- Change Password form -->
 
 			<form:form id="form" class="topBefore" action="changepwd" method="post" modelAttribute="changePassword">
-			    Enter current password:<form:input path="currPassword" />
+			    Enter current password:<form:input path="currPassword" required="required" />
 				
-				Enter new password:<form:input path="newPassword" />
+				Enter new password:<form:input path="newPassword" required="required" />
 				
-				Confirm new password :<form:input path="confirmPassword" />
+				Confirm new password :<form:input path="confirmPassword" required="required"/>
 
 				<button type="submit">Change Password</button>
 

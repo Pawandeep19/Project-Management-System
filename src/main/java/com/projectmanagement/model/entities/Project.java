@@ -1,4 +1,4 @@
-package com.projectmanagement.model.dao;
+package com.projectmanagement.model.entities;
 
 import java.sql.Date;
 

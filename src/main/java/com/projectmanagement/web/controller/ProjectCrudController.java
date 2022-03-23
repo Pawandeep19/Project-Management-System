@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.projectmanagement.model.dao.Project;
-import com.projectmanagement.model.dao.User;
+
 import com.projectmanagement.model.dto.DtoUtil;
 import com.projectmanagement.model.dto.ProjectDto;
+import com.projectmanagement.model.entities.Project;
+import com.projectmanagement.model.entities.User;
 import com.projectmanagement.model.service.ProjectService;
 
 @Controller
@@ -53,6 +54,10 @@ public class ProjectCrudController {
 	public ModelAndView updateProjectGet(ModelAndView mv, @PathVariable int id) {
 		mv.setViewName("updateProject");
 		Project project = projectService.getProjectById(id);
+		if (project.getProjectStatus().contentEquals("Completed")) {
+			mv.setViewName("notAuthorized");
+			return mv;
+		}
 		ProjectDto projectDto = new ProjectDto();
 		projectDto.setId(id);
 		projectDto.setProjectName(project.getProjectName());
@@ -81,8 +86,11 @@ public class ProjectCrudController {
 
 		Project project = projectService.getProjectById(id);
 		System.out.println(project.getProjectStatus());
-		projectService.deleteProject(id);
-		return "redirect:../home";
+		if (project.getProjectStatus().contentEquals("Not Started")) {
+			projectService.deleteProject(id);
+			return "redirect:../home?success=Project deleted successfully";
+		}
+		return "notAuthorized";		
 
 	}
 

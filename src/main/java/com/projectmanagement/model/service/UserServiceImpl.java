@@ -7,8 +7,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.stereotype.Service;
 
-import com.projectmanagement.model.dao.User;
 import com.projectmanagement.model.dao.UserDao;
+import com.projectmanagement.model.entities.User;
 
 @Service
 @Transactional
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 		userDao.save(user);
 	}
 
-	// Change Password
+	// Change Password input and return kya kar raha hai
 	@Override
 	public void changePassword(User user, String password) {
 		user.setPassword(bCryptPasswordEncoder.encode(password));

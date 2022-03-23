@@ -1,3 +1,16 @@
+/**
+* Project Name : Project Management System
+* @company YMSLI
+* @author Pawandeep Singh
+* @date 17 March 2022
+* Copyright (c) 2022, Yamaha Motor Solutions (INDIA) Pvt Ltd.
+*
+* Description
+* -------------------------------------------------------------------------------------------------
+* ProjectCrudController class : for mapping request for various project related operations
+
+* --------------------------------------------------------------------------------------------------
+*/
 package com.projectmanagement.web.controller;
 
 import java.util.Arrays;
@@ -24,7 +37,8 @@ import com.projectmanagement.model.service.ProjectService;
 public class ProjectCrudController {
 
 	private ProjectService projectService;
-
+	
+	/**Autowiring Reference of projectService to perform various project related operations for various mappings */
 	@Autowired
 	public ProjectCrudController(ProjectService projectService) {
 		this.projectService = projectService;
@@ -32,7 +46,7 @@ public class ProjectCrudController {
 
 	// ****** Create Project ********
 
-	// Add Project form page
+	// Get mapping that shows a create project form to create a new project
 	@GetMapping(path = "addproject")
 	public ModelAndView projectGet(ModelAndView mv) {
 		mv.setViewName("createProject");
@@ -40,7 +54,7 @@ public class ProjectCrudController {
 		return mv;
 	}
 
-	// Add Project post mapping
+	// Post Mapping to save the new project into database
 	@PostMapping(path = "addproject")
 	public String projectPost(@ModelAttribute ProjectDto projectdto) {
 		projectService.addProject(DtoUtil.convertToProject(projectdto));
@@ -49,7 +63,7 @@ public class ProjectCrudController {
 
 	// ****** Update Project ********
 
-	// update project form page
+	// Get mapping that shows an update project form to update an existing project
 	@GetMapping(path = "updateProject/{id}")
 	public ModelAndView updateProjectGet(ModelAndView mv, @PathVariable int id) {
 		mv.setViewName("updateProject");
@@ -71,7 +85,7 @@ public class ProjectCrudController {
 		return mv;
 	}
 
-	// update project post mapping
+	// Post Mapping to save the changes of the project into database
 
 	@PostMapping(path = "updateProject")
 	public String updateProjectPost(@ModelAttribute ProjectDto projectDto) {
@@ -81,6 +95,7 @@ public class ProjectCrudController {
 
 	// ****** Delete Project ********
 
+	//Get Mapping to delete the selected project
 	@GetMapping(path = "deleteProject/{id}")
 	public String deleteProjectGet(@PathVariable int id) {
 

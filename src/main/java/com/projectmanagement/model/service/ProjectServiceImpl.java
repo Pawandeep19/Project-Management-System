@@ -1,3 +1,23 @@
+/**
+* Project Name : Project Management System
+* @company YMSLI
+* @author Pawandeep Singh
+* @date March 17, 2022
+* Copyright (c) 2022, Yamaha Motor Solutions (INDIA) Pvt Ltd.
+*
+* Description
+* -----------------------------------------------------------------------------------
+* Services for Project Operations
+*
+* This module has the following functions:-
+* 1. getAllProject - to get all projects
+* 2. getProjectById - to get a particular project by Id (using projectId)
+* 3. addProject- to create a new project
+* 4. deleteProject- to delete a particular project using project_Id
+* 5. updateProjectDetails - to update a particular project using project_id
+* 6. findAll-to get a list of projects matching with the keyword entered by the user
+*/
+
 package com.projectmanagement.model.service;
 
 import java.util.List;
@@ -17,19 +37,29 @@ public class ProjectServiceImpl implements ProjectService {
 
 	private ProjectDao projectDao;
 
+	/**Constructor Autowiring Reference of ProjectDao interface to interact with database table*/
 	@Autowired
 	public ProjectServiceImpl(ProjectDao projectDao) {
 		this.projectDao = projectDao;
 	}
 
-	// To get List of all projects
+	/**
+	* @param 
+	* method to get list of all projects
+	* @return List<Project>
+	*/
 
 	@Override
 	public List<Project> getAllProject() {
 		return projectDao.findAll();
 	}
 
-	// To get a particular project by Id
+	
+	/**
+	* @param projectId
+	* method to get a particular project by Id
+	* @return Project
+	*/
 	
 	@Override
 	public Project getProjectById(Integer projectId) {
@@ -38,7 +68,11 @@ public class ProjectServiceImpl implements ProjectService {
 				.orElseThrow(() -> new ProjectNotFoundException("No Project with this ID"));
 	}
 
-	// Add Project
+	/**
+	* @param projectId
+	* method to save a new project into the database
+	* @return Project
+	*/
 
 	@Override
 	public Project addProject(Project project) {
@@ -47,6 +81,11 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	// Delete Project
+	/**
+	* @param projectId
+	* method to delete a project from database
+	* @return Project
+	*/
 
 	@Override
 	public Project deleteProject(Integer projectId) {
@@ -56,7 +95,13 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	// Update Project
-	
+	/**
+	* @param projectId
+	* @param ProjectDto
+	* method to update a new project into the database
+	* @return Project
+	*/
+
 	@Override
 	public Project updateProjectDetails(Integer projectId, ProjectDto projectDto) {
 		Project project = getProjectById(projectId);
@@ -73,6 +118,12 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	// Search Project
+	/**
+	* @param String keyword
+	* method to search projects in the database.
+	* @return List<Project>
+	*/
+
 
 	public List<Project> findAll(String keyword) {
 		if (keyword != null) {

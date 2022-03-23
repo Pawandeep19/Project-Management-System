@@ -1,3 +1,17 @@
+/**
+* Project Name : Project Management System
+* @company YMSLI
+* @author Pawandeep Singh
+* @date 16 March, 2022
+* Copyright (c) 2022, Yamaha Motor Solutions (INDIA) Pvt Ltd.
+*
+* Description
+* ---------------------------------------------------------------------------------------------------------
+* User Class : User Class Entity used for creation and interaction with user_table in the database
+* ---------------------------------------------------------------------------------------------------------
+*
+ */
+
 package com.projectmanagement.model.entities;
 
 import java.util.List;
@@ -10,6 +24,7 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
 
 @Data
 @AllArgsConstructor

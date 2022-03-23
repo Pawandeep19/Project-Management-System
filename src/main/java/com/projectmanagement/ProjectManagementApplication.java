@@ -9,7 +9,8 @@ import com.projectmanagement.model.service.UserService;
 
 @SpringBootApplication
 public class ProjectManagementApplication implements CommandLineRunner {
-
+	
+	/**Autowiring Reference of UserService to perform operations for various mappings */
 	@Autowired
 	private UserService userService;
 

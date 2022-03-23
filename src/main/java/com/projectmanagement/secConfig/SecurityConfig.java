@@ -1,3 +1,16 @@
+/**
+* Project Name : Project Management System
+* @company YMSLI
+* @author Pawandeep Singh
+* @date 17 March 2022
+* Copyright (c) 2022, Yamaha Motor Solutions (INDIA) Pvt Ltd.
+*
+* Description
+* -------------------------------------------------------------------------------------------------
+* SecurityConfig class extending WebSecurityConfigurerAdapter:
+* for security configuration of spring security for authentication and authorization
+* --------------------------------------------------------------------------------------------------
+*/
 package com.projectmanagement.secConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +26,32 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-
+	/**Constructor Autowiring Reference of UserDetailsService interface to apply user related business logic operations*/
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
-
+	/**
+	* @param AuthenticationManagerBuilder (auth)
+	* method used for authentication of user
+	*/
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService);
 	}
-
+     
+	/**
+	* @param HttpSecurity (http)
+	* method used for authorization of user
+	*/
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 		.authorizeRequests()
 		.antMatchers("/home/**").hasAnyRole("ADMIN")
+		.antMatchers("/addproject/**").hasAnyRole("ADMIN")
+		.antMatchers("/updateProject/**").hasAnyRole("ADMIN")
+		.antMatchers("/deleteProject/**").hasAnyRole("ADMIN")
+		.antMatchers("/changepwd/**").hasAnyRole("ADMIN")
 		.and().formLogin()
 		.loginPage("/login").loginProcessingUrl("/projectlogin")
 		.usernameParameter("uname").passwordParameter("upass")
@@ -45,7 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         );
   }
 
-	
+	/** Bean Wiring for PasswordEncoder*/
 	@Bean
 	public PasswordEncoder getPasswordEncoder()
 	{

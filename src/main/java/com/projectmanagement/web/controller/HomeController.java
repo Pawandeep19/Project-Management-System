@@ -1,3 +1,16 @@
+/**
+* Project Name : Project Management System
+* @company YMSLI
+* @author Pawandeep Singh
+* @date 17 March 2022
+* Copyright (c) 2022, Yamaha Motor Solutions (INDIA) Pvt Ltd.
+*
+* Description
+* -------------------------------------------------------------------------------------------------
+* HomeController class : for mapping request for home page and change password page
+
+* --------------------------------------------------------------------------------------------------
+*/
 package com.projectmanagement.web.controller;
 
 import java.security.Principal;
@@ -31,15 +44,18 @@ import com.projectmanagement.model.service.UserService;
 public class HomeController {
 
 	private ProjectService projectService;
+	
+	/**Autowiring Reference of UserService to perform operations for various mappings */
 	@Autowired
 	private UserService userService;
-
+    
+	/**Autowiring Reference of projectService to perform various project related operations for various mappings */
 	@Autowired
 	public HomeController(ProjectService projectService) {
 		this.projectService = projectService;
 	}
 
-	// Display all Projects
+	// Get Mapping of home that returns the list of all projects to home page of the web application
 
 	@GetMapping("/home")
 	public String home(ModelMap map) {
@@ -47,7 +63,7 @@ public class HomeController {
 		return "home";
 	}
 
-	// Search a project
+	// Post mapping of home to return the list of projects matching the keyword entered by user in search bar
 
 	@PostMapping("/home")
 	public String serach(Model model, @Param("keyword") String keyword) {
@@ -56,19 +72,16 @@ public class HomeController {
 		return "home";
 	}
 
-	// change password form
+	// Get Mapping of change password page that returns a form to change password 
 
 	@GetMapping(path = "changepwd")
 	public ModelAndView changePwdGet(ModelAndView mv, Principal principal) {
 		mv.setViewName("changePassword");
 		mv.addObject("changePassword", new ChangePasswordDto());
-		System.out.println(principal.getName());
-		User user = userService.getUserByUsername(principal.getName());
-		mv.addObject("user", user);
 		return mv;
 	}
 
-	// change password post mapping and validation
+	// Post Mapping of change password page that validates the current password and changes the password on successful validation
 
 	@PostMapping(path = "changepwd")
 	public String changePwdPost(@ModelAttribute ChangePasswordDto changePasswordDto, Principal principal) {

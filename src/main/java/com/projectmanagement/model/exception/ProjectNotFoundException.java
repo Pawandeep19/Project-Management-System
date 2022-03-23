@@ -1,3 +1,16 @@
+/**
+* Project Name : Project Management System
+* @company YMSLI
+* @author Pawandeep Singh
+* @date 16 March, 2022
+* Copyright (c) 2022, Yamaha Motor Solutions (INDIA) Pvt Ltd.
+*
+* Description
+* ---------------------------------------------------------------------------------------------------------
+* ProjectNotFoundException Class : Throws an exception if project not found
+* ---------------------------------------------------------------------------------------------------------
+*
+ */
 package com.projectmanagement.model.exception;
 
 public class ProjectNotFoundException extends RuntimeException{

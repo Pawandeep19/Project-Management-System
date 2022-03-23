@@ -76,6 +76,8 @@
 
 
     <!--  Search Bar  -->
+    
+    
 	<div class="rest">
 		<div>
 			<form action="home" method="post">

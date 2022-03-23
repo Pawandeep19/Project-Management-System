@@ -30,7 +30,7 @@
    
    <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION }">
       <div class="container" id="badcred">           
-         <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message }"></c:out>
+         <c:out value="Invalid Login Credentials"></c:out>
       </div>
    </c:if>
    

@@ -19,7 +19,7 @@
 <div class="rest">
 	<div id="container">
 	
-	<h1>UPDATE PROJECT</h1>
+	<h1>UPDATE PROJECT : <span> ${projectDto.projectName} </span></h1>
 	
 	<!-- Create new project form  -->
 	
@@ -29,11 +29,11 @@
 	<form:hidden path="id"/><br/>	
 	
 	Enter project name:<form:input required="required" maxlength="30" path="projectName"/>
-	Enter start date:<form:input required="required" type="date" path="startDate" />
-	Enter end date :<form:input required="required" type="date" path="endDate" />
+	Enter start date:<form:input required="required" type="date" path="startDate" id="startdate" />
+	Enter end date :<form:input required="required" type="date" path="endDate" id="enddate" />
 		<label for="status">Project Status:</label>
 		<select name="projectStatus" required="required" id="status">
-		<c:set var="status" value="${projectDto.projectStatus }"/>		
+		<c:set var="status" value="${projectDto.projectStatus}"/>		
 		<c:if test="${(status=='Not Started')}">		
 		  <option value="Not Started">Not Started</option>
 		</c:if>
@@ -46,8 +46,8 @@
 	
 	<form:hidden path="createdBy" value="${loggedinuser}"/><br/>
 	
-	 <input type="submit" value="SAVE"/>
-	 <input type="reset" value="RESET"/>
+	 <input id="submit" type="submit" value="SAVE" disabled="disabled"/>
+	 <input id="reset" type="reset" value="RESET"/>
 	
 	
 	</form:form>
@@ -58,21 +58,62 @@
 
 <script>
 
+/* Save button disabled if no changes made */
+$(document).on("change", "form", 
+		    function(){ 
+     $("#submit").prop("disabled",false);
+     $("#submit").css("background-color", "transparent");
+     $("#submit").css("cursor", "pointer");
+     $("#submit").css("color", "black");
+     $("#submit").hover(function(){
+  	   $(this).css("background-color", "green");
+  	   }, function(){
+  	   $(this).css("background-color", "transparent");
+  	 });
+     
+     $("#reset").prop("disabled",false);
+     $("#reset").css("background-color", "transparent");
+     $("#reset").css("cursor", "pointer");
+     $("#reset").css("color", "black");
+     $("#reset").hover(function(){
+  	   $(this).css("background-color", "red");
+  	   }, function(){
+  	   $(this).css("background-color", "transparent");
+  	 });
+  } 
+);
+ 
+
 /* Leaving the page without saving - Warning */
 
 var isSubmitting = false
 
 $(document).ready(function () {
-    $('form').submit(function(){
-        isSubmitting = true
+    $('form').submit(function(ev){
+    	
+    	/* Start date should be less than End date validation */
+
+		if(Date.parse($('#startdate').val()) < Date.parse($('#enddate').val())){ 
+			isSubmitting = true;
+		 }
+		else{
+			alert('startdate should be lesser than enddate');
+			ev.preventDefault();
+		} 
     })
+    
+ 
 
     $('form').data('initial-state', $('form').serialize());
 
     $(window).on('beforeunload', function() {
-        if (!isSubmitting && $('form').serialize() != $('form').data('initial-state')){
+    	
+    	/* Leaving the page without saving - Warning */
+    	
+		if (!isSubmitting && $('form').serialize() != $('form').data('initial-state')){
             return 'You have unsaved changes which will not be saved.'
         }
+		
     });
 })
 </script>

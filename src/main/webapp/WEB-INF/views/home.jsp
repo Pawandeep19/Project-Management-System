@@ -112,7 +112,19 @@
 											</div>
 											
 											<div class="col-md-6">
-												<h5>STATUS : ${project.projectStatus}</h5>
+
+												<c:set var="status" value="${project.projectStatus}" />
+												<c:if test="${(status=='Completed')}">												
+													<h5> <span class="badge badge-success bg-success">STATUS : ${project.projectStatus}</span></h5>
+												</c:if>
+												<c:if test="${(status=='Not Started')}">												
+													<h5> <span class="badge badge-danger bg-danger">STATUS : ${project.projectStatus}</span></h5>
+												</c:if>
+												<c:if test="${(status=='In Progress')}">												
+													<h5> <span class="badge badge-warning bg-warning">STATUS : ${project.projectStatus}</span></h5>
+												</c:if>
+												
+												
 												<h5>CLIENT: ${project.clientName}</h5>
 												<h5>START DATE: <fmt:formatDate type = "date" value = "${project.startDate}" /></h5>
 												<h5>END DATE: <fmt:formatDate type = "date" value = "${project.endDate}" /></h5>
@@ -128,7 +140,7 @@
 												</c:if>											
 													
 												<c:if test="${project.projectStatus=='Completed'}">												
-													<button disabled="disabled" class="btn btn-sm edit"> <i class="fa fa-pencil-square"></i> Edit</button>
+													<button disabled="disabled" class="btn btn-sm edit dis"> <i class="fa fa-pencil-square"></i> Edit</button>
 												</c:if>
 												
 												<!-- Delete Button  -->
@@ -140,7 +152,7 @@
 												</c:if>
 												
 												<c:if test="${project.projectStatus=='Completed' || project.projectStatus=='In Progress'}">												
-													<button disabled="disabled" class="btn btn-sm del"> <i class="fa fa-trash"></i> Delete</button>
+													<button disabled="disabled" class="btn btn-sm del dis"> <i class="fa fa-trash"></i> Delete</button>
 												</c:if>
 										
 									
@@ -179,7 +191,7 @@
 												action="deleteProject/${project.projectId}">
 												<div class="container">
 													<h1>Delete Project</h1>
-													<p>Are you sure you want to delete your project?</p>
+													<p>Are you sure you want to delete your project : "${project.projectName}" ?</p>
 
 													<div class="clearfix">
 														<button type="button"

@@ -87,11 +87,11 @@
              <!-- Change Password form -->
 
 			<form:form id="form" class="topBefore" action="changepwd" method="post" modelAttribute="changePassword">
-			    Enter current password:<form:input path="currPassword" required="required" />
+			    Enter current password:<form:input type="password" path="currPassword" required="required" />
 				
-				Enter new password:<form:input path="newPassword" required="required" />
+				Enter new password:<form:input type="password" path="newPassword" required="required" />
 				
-				Confirm new password :<form:input path="confirmPassword" required="required"/>
+				Confirm new password :<form:input type="password" path="confirmPassword" required="required"/>
 
 				<button type="submit">Change Password</button>
 

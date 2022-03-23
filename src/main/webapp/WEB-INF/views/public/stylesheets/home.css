@@ -5,6 +5,7 @@ body {
 	letter-spacing: 1px;
 	background-image:
 		url("https://besthqwallpapers.com/Uploads/27-2-2021/157767/thumb2-turquoise-abstract-wave-4k-turquoise-wave-on-a-white-background-turquoise-waves-background-turquoise-abstraction.jpg");
+		overflow-x:hidden;
 }
 
 html {
@@ -39,6 +40,12 @@ html {
 	background-color: red;
 	color: white;	
 	width: 40%;
+}
+p{
+	cursor:no-drop;
+}
+.dis hover{
+	cursor:no-drop;
 }
 
 h4 {
@@ -143,17 +150,17 @@ input.form-control {
 	width: 100%; /* Full width */
 	height: 100%; /* Full height */
 	overflow: auto; /* Enable scroll if needed */
-	background-color: #474e5d;
 	padding-top: 50px;
+	backdrop-filter: blur(2px);
 }
 
 /* Modal Content/Box */
 .modal-content {
 	background-color: #fefefe;
-	margin: 5% auto 15% auto;
+	margin: 10% auto 15% auto;
 	/* 5% from the top, 15% from the bottom and centered */
 	border: 1px solid #888;
-	width: 80%; /* Could be more or less, depending on screen size */
+	width: 70%; /* Could be more or less, depending on screen size */
 }
 
 /* Style the horizontal ruler */

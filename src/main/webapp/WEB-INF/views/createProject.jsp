@@ -21,7 +21,7 @@
 <div class="rest">
 	<div id="container">
 	
-	<h1>CREATE NEW PROJECT</h1>
+	<h1>CREATE NEW PROJECT </h1>
 	 
 	 <!-- Create new project form  -->
 	<form:form id="form" class="topBefore" action="addproject" method="post"
@@ -44,8 +44,8 @@
 		Enter resources allocated like , Eg: Pawan, Akshat, Paras,...<form:input required="required" path="resourcesAllocated" />
 		<form:hidden path="createdBy" value="${loggedinuser}"/>
 		
-		<input type="submit" value="SAVE" />
-		<input type="reset" value="RESET">
+		<input id="submit" type="submit" value="SAVE" disabled="disabled" />
+		<input id="reset" type="reset" value="RESET" disabled="disabled">
 		
 	</form:form>
     </div>
@@ -55,7 +55,32 @@
 
 <script>
 
-
+/* Save button disabled if no changes made */
+$(document).on("change", "form", 
+	    function(){ 
+	       $("#submit").prop("disabled",false);
+	       $("#submit").css("background-color", "transparent");
+	       $("#submit").css("cursor", "pointer");
+	       $("#submit").css("color", "black");
+	       $("#submit").hover(function(){
+	    	   $(this).css("background-color", "green");
+	    	   }, function(){
+	    	   $(this).css("background-color", "transparent");
+	    	 });
+	       
+	       $("#reset").prop("disabled",false);
+	       $("#reset").css("background-color", "transparent");
+	       $("#reset").css("cursor", "pointer");
+	       $("#reset").css("color", "black");
+	       $("#reset").hover(function(){
+	    	   $(this).css("background-color", "red");
+	    	   }, function(){
+	    	   $(this).css("background-color", "transparent");
+	    	 });
+	    } 
+	);
+	
+	
 var isSubmitting = false
 
 $(document).ready(function () {

@@ -83,7 +83,7 @@ input:hover:focus::-ms-placeholder, textarea:hover::focus:-ms-placeholder
 body {
 	font-family: 'Lato', sans-serif;
 	background-image:
-		url("https://i.pinimg.com/originals/de/b6/e8/deb6e8d4c334e8fc1ca2b4f55cb111fc.jpg");
+		url("https://static.vecteezy.com/system/resources/previews/004/837/139/original/light-brown-watercolor-splash-wash-background-vector.jpg");
 }
 
 header {
@@ -156,18 +156,32 @@ textarea:hover {
 }
 
 #submit {
-	width: 502px;
-	padding: 0;
-	margin: -5px 0px 0px 0px;
-	font-family: 'Lato', sans-serif;
-	font-size: 0.875em;
-	color: #b3aca7;
-	outline: none;
-	cursor: pointer;
-	border: solid 1px #b3aca7;
-	border-top: none;
+	
+	color: black;
+	background-color:grey;
+	cursor: no-drop;
+	
 }
 
 #submit:hover {
-	color: #e2dedb;
+	color: white;
+}
+
+#reset {
+	
+	color: black;
+	background-color:grey;
+	cursor: no-drop;
+	
+}
+
+#reset:hover {
+	color: white;
+}
+h1{
+	text-transform:uppercase;
+	letter-spacing:2px;
+}
+h1 span{
+	color:Green;
 }

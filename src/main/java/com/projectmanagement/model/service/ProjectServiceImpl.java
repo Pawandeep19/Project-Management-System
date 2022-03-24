@@ -132,6 +132,12 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectDao.findAll();
 	}
 
+	/**
+	* @param status
+	* @param currentUser
+	* method to get count of project of a particular status of a particular user
+	* @return count(Long)
+	*/
 	@Override
 	public Long countByProjectStatusAndCreatedBy(String status, String currentUser) {
 		return projectDao.countByProjectStatusAndCreatedBy(status, currentUser);

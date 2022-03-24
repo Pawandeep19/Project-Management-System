@@ -45,27 +45,43 @@ public class ProjectCrudController {
 	}
 
 	// ****** Create Project ********
+	
+	/**
+	* @param ModelAndView
+	* Get mapping that shows a create project form to create a new project
+	* @return ModelAndView
+	*/
 
-	// Get mapping that shows a create project form to create a new project
 	@GetMapping(path = "addproject")
-	public ModelAndView projectGet(ModelAndView mv) {
+	public ModelAndView createProjectForm(ModelAndView mv) {
 		mv.setViewName("createProject");
 		mv.addObject("project", new Project());
 		return mv;
 	}
+	
+	/**
+	* @param projectDto
+	* Post Mapping to save the new project into database
+	* @return String
+	*/
 
-	// Post Mapping to save the new project into database
 	@PostMapping(path = "addproject")
-	public String projectPost(@ModelAttribute ProjectDto projectdto) {
+	public String createProject(@ModelAttribute ProjectDto projectdto) {
 		projectService.addProject(DtoUtil.convertToProject(projectdto));
 		return "redirect:home?success=Project Created Succesfully";
 	}
 
 	// ****** Update Project ********
+	
+	/**
+	* @param ModelAndView
+	* @projectId
+	* Get mapping that shows an update project form to update an existing project
+	* @return ModelAndView
+	*/
 
-	// Get mapping that shows an update project form to update an existing project
 	@GetMapping(path = "updateProject/{id}")
-	public ModelAndView updateProjectGet(ModelAndView mv, @PathVariable int id) {
+	public ModelAndView updateProjectForm(ModelAndView mv, @PathVariable int id) {
 		mv.setViewName("updateProject");
 		Project project = projectService.getProjectById(id);
 		if (project.getProjectStatus().contentEquals("Completed")) {
@@ -85,17 +101,26 @@ public class ProjectCrudController {
 		return mv;
 	}
 
-	// Post Mapping to save the changes of the project into database
+	/**
+	* @param projectDto
+	* Post Mapping to save the changes of the project into database
+	* @return String
+	*/
 
 	@PostMapping(path = "updateProject")
-	public String updateProjectPost(@ModelAttribute ProjectDto projectDto) {
+	public String updateProject(@ModelAttribute ProjectDto projectDto) {
 		projectService.updateProjectDetails(projectDto.getId(), projectDto);
 		return "redirect:home?success=Project Updated Successfully";
 	}
 
 	// ****** Delete Project ********
+	
+	/**
+	* @param projectId
+	* Get Mapping to delete the selected project
+	* @return String
+	*/
 
-	//Get Mapping to delete the selected project
 	@GetMapping(path = "deleteProject/{id}")
 	public String deleteProjectGet(@PathVariable int id) {
 
@@ -109,7 +134,11 @@ public class ProjectCrudController {
 
 	}
 
-	// To send logged in user from controller to view
+	/**
+	* @param Model
+	* To send logged in user from controller to view
+	* @return User
+	*/
 
 	@ModelAttribute("loggedinuser")
 	public User globalUserObject(Model model) {

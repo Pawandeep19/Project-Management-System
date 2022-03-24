@@ -23,22 +23,34 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 
-	// Get mapping of Login page that returns login page of the web application
+	/**
+	* Get mapping of Login page that returns login page of the web application
+	* @return String
+	*/
 
 	@GetMapping(path = "login")
 	public String appLogin() {
 		return "login";
 	}
 	
-    // get mapping for forbidden user 
+	/**
+	* @param ModelAndView
+	* @param principal
+	* get mapping for forbidden user 
+	* @return String
+	*/
 	@GetMapping(path = "accessdenied")
 	public ModelAndView accessdenied(Principal principal, ModelAndView mv) {
 		mv.addObject("username", principal.getName());
 		mv.setViewName("403");
 		return mv;
 	}
+	
+	/**
+	* Get mapping for logout 
+	* @return String
+	*/
 
-	//Get mapping for logout 
 
 	@GetMapping("/logout")
 	public String logout() {

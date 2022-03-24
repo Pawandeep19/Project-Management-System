@@ -26,6 +26,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
 	/**Constructor Autowiring Reference of UserDetailsService interface to apply user related business logic operations*/
 	@Autowired
 	private UserDetailsService userDetailsService;

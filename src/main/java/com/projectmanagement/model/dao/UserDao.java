@@ -23,6 +23,11 @@ import com.projectmanagement.model.entities.User;
 
 @Repository
 public interface UserDao extends JpaRepository<User, Integer> {
-	//used to find user by username
+
+	/**
+	* @param susername
+	* method to get a particular user from username
+	* @return User
+	*/
 	public User findByUsername(String username);
 }

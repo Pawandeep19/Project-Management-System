@@ -30,7 +30,8 @@ import com.projectmanagement.model.entities.User;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-
+	
+	/**Autowiring of Password encoder used for encoding/decoding password */
 	@Autowired
 	private PasswordEncoder bCryptPasswordEncoder;
 

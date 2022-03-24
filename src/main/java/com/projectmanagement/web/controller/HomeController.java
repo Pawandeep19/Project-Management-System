@@ -36,10 +36,6 @@ import com.projectmanagement.model.entities.User;
 import com.projectmanagement.model.service.ProjectService;
 import com.projectmanagement.model.service.UserService;
 
-
-//functionalities
-
-
 @Controller
 public class HomeController {
 
@@ -54,11 +50,16 @@ public class HomeController {
 	public HomeController(ProjectService projectService) {
 		this.projectService = projectService;
 	}
-
-	// Get Mapping of home that returns the list of all projects to home page of the web application
+	
+	/**
+	* @param ModelMap
+	* @param principal
+	* Get Mapping of home that returns the list of all projects to home page of the web application
+	* @return String
+	*/
 
 	@GetMapping("/home")
-	public String home(ModelMap map ,Principal principal) {
+	public String showAllProjects(ModelMap map ,Principal principal) {
 		map.addAttribute("project", projectService.getAllProject());
 		map.addAttribute("inp", projectService.countByProjectStatusAndCreatedBy("In Progress",principal.getName()));
 		map.addAttribute("comp", projectService.countByProjectStatusAndCreatedBy("Completed",principal.getName()));
@@ -66,11 +67,18 @@ public class HomeController {
 
 		return "home";
 	}
-
-	// Post mapping of home to return the list of projects matching the keyword entered by user in search bar
+     
+	/**
+	* @param ModelMap
+	* @param keyword
+	* @param principal
+	* Post mapping of home to return the list of projects matching the keyword entered by user in search bar
+	* @return String
+	*/
+	
 
 	@PostMapping("/home")
-	public String serach(ModelMap map, @Param("keyword") String keyword, Principal principal) {
+	public String searchProject(ModelMap map, @Param("keyword") String keyword, Principal principal) {
 		List<Project> listProjects = projectService.findAll(keyword);
 		map.addAttribute("project", listProjects);
 		map.addAttribute("inp", projectService.countByProjectStatusAndCreatedBy("In Progress",principal.getName()));
@@ -78,20 +86,30 @@ public class HomeController {
 		map.addAttribute("ns", projectService.countByProjectStatusAndCreatedBy("Not Started",principal.getName()));
 		return "home";
 	}
-
-	// Get Mapping of change password page that returns a form to change password 
+	
+	/**
+	* @param ModelAndView
+	* @param principal
+	* Get Mapping of change password page that returns a form to change password 
+	* @return ModelAndView
+	*/
 
 	@GetMapping(path = "changepwd")
-	public ModelAndView changePwdGet(ModelAndView mv, Principal principal) {
+	public ModelAndView changePassFormPage(ModelAndView mv, Principal principal) {
 		mv.setViewName("changePassword");
 		mv.addObject("changePassword", new ChangePasswordDto());
 		return mv;
 	}
-
-	// Post Mapping of change password page that validates the current password and changes the password on successful validation
+	
+	/**
+	* @param ChangePasswordDto
+	* @param principal
+	* Post Mapping of change password page that validates the current password and changes the password on successful validation
+	* @return String
+	*/
 
 	@PostMapping(path = "changepwd")
-	public String changePwdPost(@ModelAttribute ChangePasswordDto changePasswordDto, Principal principal) {
+	public String changePass(@ModelAttribute ChangePasswordDto changePasswordDto, Principal principal) {
 		User user = userService.getUserByUsername(principal.getName());
 		if (!changePasswordDto.getConfirmPassword().matches(changePasswordDto.getNewPassword())) {
 			return "redirect:changepwd?error=Password Don't Match";
@@ -102,8 +120,12 @@ public class HomeController {
 			return "redirect:logout?success=Password Changed Successfully!";
 		}
 	}
-
-	// To send logged in user from controller to view
+	
+	/**
+	* @param Model
+	* To send logged in user from controller to view
+	* @return User
+	*/
 
 	@ModelAttribute("loggedinuser")
 	public User globalUserObject(Model model) {

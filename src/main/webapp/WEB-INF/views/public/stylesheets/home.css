@@ -3,9 +3,10 @@
 body {
 	font-family: 'Montserrat', sans-serif;
 	letter-spacing: 1px;
-	background-image:
-		url("https://besthqwallpapers.com/Uploads/27-2-2021/157767/thumb2-turquoise-abstract-wave-4k-turquoise-wave-on-a-white-background-turquoise-waves-background-turquoise-abstraction.jpg");
-		overflow-x:hidden;
+	/*  background-image:
+		url("https://besthqwallpapers.com/Uploads/27-2-2021/157767/thumb2-turquoise-abstract-wave-4k-turquoise-wave-on-a-white-background-turquoise-waves-background-turquoise-abstraction.jpg"); */
+		overflow-x:hidden; 
+	 background-color:#222831;
 }
 
 html {
@@ -13,12 +14,13 @@ html {
 }
 
 #sp {
-	margin: 0 100px;;
+	margin: 0 80px;
+	margin-right:150px;
 }
 #count span{
 	width: 200px;
-	height: 80px;
-	margin:30px 80px;
+	height: 40px;
+	margin:20px 80px;
 	font-size:1rem;
 }
 .mytoast{
@@ -37,6 +39,7 @@ html {
 	margin-bottom: 50px;
 	flex-direction: row;
 	border: 5px solid black;
+	
 }
 
 .col-md-6 {
@@ -63,7 +66,7 @@ p{
 }
 
 h4 {
-	background-color: #442c2e;
+	background-color: #DA0037;
 	color: white;
 	text-align: center;
 	text-transform: uppercase;
@@ -71,14 +74,26 @@ h4 {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+.badge{
+	border: 3px solid white;
+}
 
 h1 {
 	text-align: center;
-	background-color: #442c2e;
+	
 	color: white;
-	/* font-weight: bolder; */
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 	margin-right: 70px;
+	border-radius: 37px;
+    background: #FF6363;
+    box-shadow: inset 6px -6px 12px #f76060, inset -6px 6px 12px #ff6666;
+}
+#se{
+	background: red;
+	border:2px solid white;
+	margin:100px auto;
+	color:white;
+	text-align:center;
 }
 
 /* model box */
@@ -117,7 +132,11 @@ button:hover {
 	opacity: 1;
 }
 
-button.btn.btn-primary {
+button.btn.btn-light {
+	display: inline;
+	width: 100px;
+}
+button.btn.btn-secondary {
 	display: inline;
 	width: 100px;
 }
@@ -165,7 +184,7 @@ input.form-control {
 	height: 100%; /* Full height */
 	overflow: auto; /* Enable scroll if needed */
 	padding-top: 50px;
-	backdrop-filter: blur(2px);
+	backdrop-filter: blur(5px);
 }
 
 /* Modal Content/Box */

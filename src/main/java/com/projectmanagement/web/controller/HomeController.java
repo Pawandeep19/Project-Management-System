@@ -84,6 +84,7 @@ public class HomeController {
 		map.addAttribute("inp", projectService.countByProjectStatusAndCreatedBy("In Progress",principal.getName()));
 		map.addAttribute("comp", projectService.countByProjectStatusAndCreatedBy("Completed",principal.getName()));
 		map.addAttribute("ns", projectService.countByProjectStatusAndCreatedBy("Not Started",principal.getName()));
+		map.addAttribute("project", listProjects);
 		return "home";
 	}
 	

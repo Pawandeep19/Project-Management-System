@@ -66,9 +66,9 @@ $(document).on("change", "form",
 	       $("#submit").prop("disabled",false);
 	       $("#submit").css("background-color", "transparent");
 	       $("#submit").css("cursor", "pointer");
-	       $("#submit").css("color", "black");
+	       $("#submit").css("color", "white");
 	       $("#submit").hover(function(){
-	    	   $(this).css("background-color", "green");
+	    	   $(this).css("background-color", "#F1EBBB");
 	    	   }, function(){
 	    	   $(this).css("background-color", "transparent");
 	    	 });
@@ -76,7 +76,7 @@ $(document).on("change", "form",
 	       $("#reset").prop("disabled",false);
 	       $("#reset").css("background-color", "transparent");
 	       $("#reset").css("cursor", "pointer");
-	       $("#reset").css("color", "black");
+	       $("#reset").css("color", "white");
 	       $("#reset").hover(function(){
 	    	   $(this).css("background-color", "red");
 	    	   }, function(){

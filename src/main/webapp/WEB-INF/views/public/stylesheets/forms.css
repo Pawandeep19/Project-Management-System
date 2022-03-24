@@ -82,8 +82,8 @@ input:hover:focus::-ms-placeholder, textarea:hover::focus:-ms-placeholder
 
 body {
 	font-family: 'Lato', sans-serif;
-	background-image:
-		url("https://static.vecteezy.com/system/resources/previews/004/837/139/original/light-brown-watercolor-splash-wash-background-vector.jpg");
+	background-color:#222831;
+	color:#e2dedb;
 }
 
 header {
@@ -157,7 +157,7 @@ textarea:hover {
 
 #submit {
 	
-	color: black;
+	color: white;
 	background-color:grey;
 	cursor: no-drop;
 	
@@ -169,7 +169,7 @@ textarea:hover {
 
 #reset {
 	
-	color: black;
+	color: white;
 	background-color:grey;
 	cursor: no-drop;
 	

@@ -81,10 +81,10 @@
 	<div class="rest">
 		<div>
 			<form action="home" method="post">
-				<input type="text" name="keyword" class="form-control"
+				<input id="searchbar" type="text" name="keyword" class="form-control"
 					placeholder="Search A Project">
-				<button class="btn btn-primary">Search</button>
-				<button type="reset" class="btn btn-primary">RESET</button>
+				<button class="btn btn-light">Search</button>
+				<button type="reset" class="btn btn-secondary">RESET</button>
 			</form>
 		</div>
 
@@ -93,14 +93,20 @@
 
 		<h1>PROJECTS</h1>
 		<div id="count">
-		<span class="badge badge-success bg-danger">Not Started : ${ns}</span>        
+		<span class="badge badge-success bg-info">Not Started : ${ns}</span>        
         <span class="badge badge-success bg-warning">In Progress : ${inp}</span>
         <span class="badge badge-success bg-success">Completed : ${comp}</span>
         </div>
-
+        	<c:set var="p" value="${project}"/>
+        
+        <c:if test="${empty p}">
+	         <h5 id="se">* NO PROJECTS FOUND *</h5>
+	    </c:if>
+	
 		<div id="sp">
 			<div class="row">
 				<c:forEach items="${project}" var="project">
+				
 					<c:if test="${loggedinuser==project.createdBy}">
 						<div class="col-md-12">
 							<div class="card" data-aos="fade-left">
@@ -247,6 +253,9 @@
 			"scrollY": "10vh",
 			"scrollCollapse": true}
 			);
+	/* AUTO FOCUS ON SEARCH */
+	var myTextBoxId = document.getElementById("searchbar")
+    myTextBoxId.focus();
 	
 </script>
 	

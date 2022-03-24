@@ -5,13 +5,16 @@
 <!DOCTYPE html>
 <html>
  <head>
+
+	<meta charset="ISO-8859-1">
+	<title>Create New Project</title>
+	
 	 <!-- header jsp -->
 	<jsp:include page="partials/header.jsp"></jsp:include>
 	<!-- our css -->
 	<style> <%@include file="public/stylesheets/forms.css"%> </style>
-
-	<meta charset="ISO-8859-1">
-	<title>Create New Project</title>
+	
+	
 </head>
 <body>
 
@@ -39,7 +42,7 @@
 		  <option value="In Progress">In Progress</option>
 		  <option value="Completed">Completed</option>
 		 </select>
-		 </br>
+		 <br>
 		Enter client name:<form:input required="required" maxlength="30" path="clientName" />
 		Enter resources allocated like , Eg: Pawan, Akshat, Paras,...<form:input required="required" path="resourcesAllocated" />
 		<form:hidden path="createdBy" value="${loggedinuser}"/>
@@ -52,6 +55,8 @@
 </div>
 
 
+
+<!--JAVA SCRIPT  -->
 
 <script>
 
@@ -80,7 +85,7 @@ $(document).on("change", "form",
 	    } 
 	);
 	
-	
+/* js for date and leave page alert */
 var isSubmitting = false
 
 $(document).ready(function () {

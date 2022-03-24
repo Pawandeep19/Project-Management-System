@@ -19,6 +19,7 @@ import java.util.List;
 
 import com.projectmanagement.model.dto.ProjectDto;
 import com.projectmanagement.model.entities.Project;
+import com.projectmanagement.model.entities.User;
 
 public interface ProjectService {
 	public List<Project> getAllProject();
@@ -32,5 +33,7 @@ public interface ProjectService {
 	public Project deleteProject(Integer projectId);	
 	
 	public List<Project> findAll(String keyword);
+	
+	public Long countByProjectStatusAndCreatedBy(String status, String currentUser);
 
 }

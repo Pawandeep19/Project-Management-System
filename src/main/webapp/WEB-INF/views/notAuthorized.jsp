@@ -4,13 +4,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Forbidden</title>
+<!-- CSS -->
 <style>
     div{
         margin:0 auto;
         text-align: center;
     }
 </style>
+
+
 </head>
 <body>
 <div>

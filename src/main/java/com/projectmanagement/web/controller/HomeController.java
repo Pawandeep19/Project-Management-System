@@ -58,17 +58,24 @@ public class HomeController {
 	// Get Mapping of home that returns the list of all projects to home page of the web application
 
 	@GetMapping("/home")
-	public String home(ModelMap map) {
+	public String home(ModelMap map ,Principal principal) {
 		map.addAttribute("project", projectService.getAllProject());
+		map.addAttribute("inp", projectService.countByProjectStatusAndCreatedBy("In Progress",principal.getName()));
+		map.addAttribute("comp", projectService.countByProjectStatusAndCreatedBy("Completed",principal.getName()));
+		map.addAttribute("ns", projectService.countByProjectStatusAndCreatedBy("Not Started",principal.getName()));
+
 		return "home";
 	}
 
 	// Post mapping of home to return the list of projects matching the keyword entered by user in search bar
 
 	@PostMapping("/home")
-	public String serach(Model model, @Param("keyword") String keyword) {
+	public String serach(ModelMap map, @Param("keyword") String keyword, Principal principal) {
 		List<Project> listProjects = projectService.findAll(keyword);
-		model.addAttribute("project", listProjects);
+		map.addAttribute("project", listProjects);
+		map.addAttribute("inp", projectService.countByProjectStatusAndCreatedBy("In Progress",principal.getName()));
+		map.addAttribute("comp", projectService.countByProjectStatusAndCreatedBy("Completed",principal.getName()));
+		map.addAttribute("ns", projectService.countByProjectStatusAndCreatedBy("Not Started",principal.getName()));
 		return "home";
 	}
 

@@ -21,14 +21,20 @@
 	
 	<h1>UPDATE PROJECT : <span> ${projectDto.projectName} </span></h1>
 	
-	<!-- Create new project form  -->
+	<!-- Update project form  -->
 	
 	<form:form id="form" class="topBefore" action="../updateProject" method="post"
 	modelAttribute="projectDto">
 			
 	<form:hidden path="id"/><br/>	
+	<c:set var="statuss" value="${projectDto.projectStatus}"/>
+	<c:if test="${(statuss=='In Progress')}">	
+		Enter project name:<form:input style="background-color:grey;color:white;" required="required" maxlength="30" path="projectName" readonly="true"/>										
+	</c:if>
+	<c:if test="${(statuss!='In Progress')}">
+		Enter project name:<form:input required="required" maxlength="30" path="projectName"/>											
+	</c:if>	
 	
-	Enter project name:<form:input required="required" maxlength="30" path="projectName"/>
 	Enter start date:<form:input required="required" type="date" path="startDate" id="startdate" />
 	Enter end date :<form:input required="required" type="date" path="endDate" id="enddate" />
 		<label for="status">Project Status:</label>
@@ -40,8 +46,16 @@
 		  <option value="In Progress">In Progress</option>
 		  <option value="Completed">Completed</option>
 		 </select>
-		 </br>
+		 <br>
+		 
+	<c:set var="statuss" value="${projectDto.projectStatus}"/>
+	<c:if test="${(statuss=='In Progress')}">	
+	Enter client name:<form:input style="background-color:grey;color:white;" required="required" maxlength="30" path="clientName" readonly="true" />
+	</c:if>
+	<c:if test="${(statuss!='In Progress')}">
 	Enter client name:<form:input required="required" maxlength="30" path="clientName" />
+	</c:if>	
+	
 	Enter resources allocated like , Eg: Pawan, Akshat, Paras,..<form:input required="required" path="resourcesAllocated" />
 	
 	<form:hidden path="createdBy" value="${loggedinuser}"/><br/>
@@ -55,6 +69,8 @@
 	
 </div>		
 </div>
+
+<!-- JS -->
 
 <script>
 

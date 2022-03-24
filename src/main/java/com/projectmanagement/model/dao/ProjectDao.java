@@ -21,12 +21,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.projectmanagement.model.entities.Project;
+import com.projectmanagement.model.entities.User;
 
 
 @Repository
 public interface ProjectDao extends JpaRepository<Project, Integer> {
 
 	// used for search functionality
-	@Query("SELECT p from Project p WHERE p.projectName LIKE %?1%")
+	@Query("SELECT p FROM Project p WHERE UPPER(p.projectName) LIKE UPPER(concat('%', ?1,'%'))")
 	public List<Project> findAll(String keyword);
+
+	public Long countByProjectStatusAndCreatedBy(String status, String currentUser);
 }

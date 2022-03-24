@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.projectmanagement.model.dao.ProjectDao;
 import com.projectmanagement.model.dto.ProjectDto;
 import com.projectmanagement.model.entities.Project;
+import com.projectmanagement.model.entities.User;
 import com.projectmanagement.model.exception.ProjectNotFoundException;
 
 @Service
@@ -44,7 +45,6 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	/**
-	* @param 
 	* method to get list of all projects
 	* @return List<Project>
 	*/
@@ -56,7 +56,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 	
 	/**
-	* @param projectId
+	* @param Integer(projectId)
 	* method to get a particular project by Id
 	* @return Project
 	*/
@@ -69,7 +69,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	/**
-	* @param projectId
+	* @param Project
 	* method to save a new project into the database
 	* @return Project
 	*/
@@ -131,5 +131,12 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return projectDao.findAll();
 	}
+
+	@Override
+	public Long countByProjectStatusAndCreatedBy(String status, String currentUser) {
+		return projectDao.countByProjectStatusAndCreatedBy(status, currentUser);
+	}
+	
+	
 
 }

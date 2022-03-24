@@ -8,48 +8,48 @@
 <html>
 <head>
 
-<!-- header jsp -->
-<jsp:include page="partials/header.jsp"></jsp:include>
+		<!-- header jsp -->
+		<jsp:include page="partials/header.jsp"></jsp:include>
+		
+		<!-- bootstrap js -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+			crossorigin="anonymous"></script>
+			
+		<!-- bootstrap css -->
+		<link rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+			crossorigin="anonymous">
+			
+		<!-- Animate on scroll  -->
+		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+		
+		<!-- aos css used for scroll effects (aos-animate on scroll)-->
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+		
+		<!-- font -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+		<!-- icon pack -->
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+		
+		<!-- Data table -->
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+		<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+		
+		<!--  jsp formatter for date-->
+		<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+		
+		<!--my custom css -->
+		<style>
+		    <%@include file="public/stylesheets/home.css"%>
+		</style>
 
-<!-- bootstrap js -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-	crossorigin="anonymous"></script>
-	
-<!-- bootstrap css -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-	
-<!-- Animate on scroll  -->
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<!-- aos css used for scroll effects (aos-animate on scroll)-->
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-<!-- font -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
-<!-- icon pack -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
-<!-- Data table -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
-<!--  jsp formatter for date-->
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-
-<meta charset="ISO-8859-1">
-<title>Dashboard</title>
-
-<!--my custom css -->
-<style>
-    <%@include file="public/stylesheets/home.css"%>
-</style>
+		<meta charset="ISO-8859-1">
+		<title>Dashboard</title>
 
 </head>
 <body>
@@ -61,8 +61,8 @@
 	if (request.getParameter("success") != null) {
 	%>
 
-	<div class="alert alert-success alert-dismissible fade show"
-		role="alert"
+	<div class="toast alert-success mytoast"
+				role="alert" data-delay=5000 data-autohide="true" aria-live="assertive"
 		style="margin-top: 2rem; width: max-content; margin-inline: auto;">
 		<%=request.getParameter("success")%>
 		<button type="button" class="message" data-dismiss="alert"
@@ -92,7 +92,11 @@
         <!-- Display All Projects  -->
 
 		<h1>PROJECTS</h1>
-
+		<div id="count">
+		<span class="badge badge-success bg-danger">Not Started : ${ns}</span>        
+        <span class="badge badge-success bg-warning">In Progress : ${inp}</span>
+        <span class="badge badge-success bg-success">Completed : ${comp}</span>
+        </div>
 
 		<div id="sp">
 			<div class="row">
@@ -218,7 +222,10 @@
 	</div>
 	
 	
-	<script>
+	
+<!-- js for animate on scroll and resources allocated table -->
+
+<script>
 	
 	/* Animate on scroll */
 		AOS.init({
@@ -227,6 +234,8 @@
 		});
 		let list = `${project[0].projectName}`;
 		console.log(list);
+		
+		$('.toast').toast('show');
 		
 	/* resources allocated */
 		$('.table_id').DataTable({
@@ -239,7 +248,7 @@
 			"scrollCollapse": true}
 			);
 	
-	</script>
+</script>
 	
 	
 </body>
